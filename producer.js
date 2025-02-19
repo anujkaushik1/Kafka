@@ -1,5 +1,17 @@
 const { connectProducer } = require("./producer_client");
 
+function getFormattedDate() {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+}
+
 async function main(){
     const producer = await connectProducer();
 
@@ -7,12 +19,15 @@ async function main(){
         {
             name: "anuj",
             value: "haha",
-            location: "north"
+            location: "north",
+            date: getFormattedDate(),
         },
         {
             name: "test_anuj",
             value: "hello-world",
-            location: "north"
+            location: "north",
+            date: getFormattedDate()
+
  
         }
     ]
